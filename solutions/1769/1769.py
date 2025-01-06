@@ -8,9 +8,15 @@ class Solution:
         if n == 2:
             return [int(x) for x in list(boxes[::-1])]
         
-        results = [0] * n
-        for current_box in range(n):
-            if boxes[current_box] == "1":
-                for new_position in range(n):
-                    results[new_position] += abs(new_position - current_box)
+        positions, results= [], []
+        for i in range(n):
+            if boxes[i] == "1":
+                positions.append(i)
+        for i in range(n):
+            sm = 0
+            for position in positions:
+                distance = abs(i - position)
+                sm += distance
+            results.append(sm)
         return results
+        
